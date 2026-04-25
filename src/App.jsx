@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 export default function App() {
   const roles = [
@@ -11,6 +10,7 @@ export default function App() {
 
   const [text, setText] = useState("");
   const [index, setIndex] = useState(0);
+  const [active, setActive] = useState("home");
 
   // typing effect
   useEffect(() => {
@@ -39,39 +39,56 @@ export default function App() {
     });
   }, []);
 
+  // scroll tracking
+  useEffect(() => {
+    const sections = document.querySelectorAll("section");
+
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach((sec) => {
+        const top = sec.offsetTop;
+        if (scrollY >= top - 100) {
+          current = sec.getAttribute("id");
+        }
+      });
+      setActive(current);
+    });
+  }, []);
+
   return (
     <>
       <div id="cursor-glow"></div>
 
-      {/* NAV */}
+      {/* NAVBAR */}
       <nav className="nav">
         <h2>Uzair</h2>
         <div>
-          <a href="#projects">Projects</a>
-          <a href="#contact">Contact</a>
+          <a className={active === "home" ? "active" : ""} href="#home">Home</a>
+          <a className={active === "projects" ? "active" : ""} href="#projects">Projects</a>
+          <a className={active === "contact" ? "active" : ""} href="#contact">Contact</a>
         </div>
       </nav>
 
       {/* HERO */}
-      <section className="hero">
+      <section id="home" className="hero">
         <motion.h1 initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
           Mohammed Uzair Shaikh
         </motion.h1>
 
         <h2 className="typing">{text}|</h2>
 
-        <div>
-          <FaGithub size={30} />
-          <FaLinkedin size={30} />
-        </div>
+        <p className="subtitle">
+          Building Android apps, backend systems & data-driven solutions
+        </p>
       </section>
 
       {/* ABOUT */}
       <section>
-        <h2>About Me</h2>
+        <motion.h2 whileInView={{ opacity: 1 }}>About Me</motion.h2>
         <p>
-          M.Sc Computer Science student passionate about Android apps,
-          backend systems, and data-driven solutions.
+          I am an M.Sc Computer Science student focused on Android development,
+          backend systems, and databases. I enjoy building real-world applications
+          with clean UI and scalable architecture.
         </p>
       </section>
 
@@ -81,18 +98,19 @@ export default function App() {
 
         {[
           { name: "Java", level: 80 },
-          { name: "Kotlin", level: 70 },
+          { name: "Kotlin", level: 75 },
           { name: "Python", level: 75 },
-          { name: "SQL", level: 85 }
+          { name: "SQL", level: 85 },
+          { name: "Firebase", level: 80 }
         ].map((skill, i) => (
           <div key={i} className="skill">
-            <p>{skill.name}</p>
+            <span>{skill.name}</span>
             <div className="bar">
               <motion.div
                 className="fill"
                 initial={{ width: 0 }}
                 whileInView={{ width: skill.level + "%" }}
-              ></motion.div>
+              />
             </div>
           </div>
         ))}
@@ -104,13 +122,26 @@ export default function App() {
 
         <div className="grid">
           <div className="card">
+            <h3>LeaveFlow App</h3>
+            <p>
+              Android leave management system with role-based login,
+              approvals, and Firebase Firestore integration.
+            </p>
+          </div>
+
+          <div className="card">
             <h3>Accounting App</h3>
-            <p>Firebase-based Android app for tracking expenses.</p>
+            <p>
+              Expense tracker using Firebase Realtime DB with real-time sync.
+            </p>
           </div>
 
           <div className="card">
             <h3>Internship Portal</h3>
-            <p>PHP & MySQL role-based system.</p>
+            <p>
+              PHP & MySQL system with role-based dashboards for students
+              and companies.
+            </p>
           </div>
         </div>
       </section>
@@ -119,6 +150,7 @@ export default function App() {
       <section id="contact">
         <h2>Contact</h2>
         <p>Email: shaikhuzair1080@gmail.com</p>
+        <p>GitHub: github.com/UzairShk</p>
       </section>
     </>
   );
