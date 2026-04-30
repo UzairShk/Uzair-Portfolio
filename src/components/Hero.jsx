@@ -19,18 +19,20 @@ const Hero = () => {
     const isComplete = text === currentRole;
 
     const handleTyping = () => {
-      if (!isDeleting && !isComplete) {
-        setText(currentRole.slice(0, text.length + 1));
-      } else if (isDeleting && text.length > 0) {
-        setText(currentRole.slice(0, text.length - 1));
-      } else if (isComplete && !isDeleting) {
-        setSpeed(2000);
-        setIsDeleting(true);
-      } else if (isDeleting && text.length === 0) {
-        setIsDeleting(false);
-        setRoleIndex((prev) => (prev + 1) % roles.length);
-        setSpeed(300);
-      }
+        if (!isDeleting && !isComplete) {
+    setText(currentRole.slice(0, text.length + 1));
+    setSpeed(50); // typing speed
+    } else if (isDeleting && text.length > 0) {
+    setText(currentRole.slice(0, text.length - 1));
+    setSpeed(30); // 🔥 faster delete
+    } else if (isComplete && !isDeleting) {
+    setSpeed(1000); // pause before delete (reduced)
+    setIsDeleting(true);
+    } else if (isDeleting && text.length === 0) {
+    setIsDeleting(false);
+    setRoleIndex((prev) => (prev + 1) % roles.length);
+    setSpeed(100); // next word delay
+    }
     };
 
     const timer = setTimeout(handleTyping, speed);
@@ -65,7 +67,7 @@ const Hero = () => {
   const handleDownloadResume = () => {
     // Create a link to download resume - works for GitHub Pages
     const link = document.createElement("a");
-    link.href = "public/UzairCV.pdf"; // Correct path for GitHub Pages with repo name
+    link.href = "/UzairCV.pdf"; // Correct path for GitHub Pages with repo name
     link.download = "Mohammed_Uzair_Resume.pdf";
     document.body.appendChild(link);
     link.click();
