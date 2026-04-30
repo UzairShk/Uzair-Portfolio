@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { FiGithub, FiExternalLink } from "react-icons/fi";
+import { FiGithub } from "react-icons/fi";
 
 const Projects = () => {
   const { ref, inView } = useInView({
@@ -25,20 +25,6 @@ const Projects = () => {
     },
     {
       id: 2,
-      title: "Accounting App",
-      description:
-        "A mobile application for personal finance management. Track income and expenses in real-time with automated calculations and detailed reports. Syncs data across devices using Firebase for seamless experience.",
-      tech: ["Java", "Firebase", "Android", "Real-time Sync"],
-      github: "https://github.com/UzairShk",
-      features: [
-        "Income/Expense tracking",
-        "Real-time cloud synchronization",
-        "Transaction history",
-        "Financial reports & analytics",
-      ],
-    },
-    {
-      id: 3,
       title: "Internship Portal Website",
       description:
         "A full-stack web application connecting students with internship opportunities. Features role-based dashboards for students, companies, and administrators. Enables job posting, applications, and tracking in a single platform.",
@@ -121,16 +107,9 @@ const Projects = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   title="View GitHub Repository"
+                  style={{ flex: 1 }}
                 >
                   <FiGithub style={{ marginRight: "5px" }} /> GitHub
-                </a>
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="View Demo"
-                >
-                  <FiExternalLink style={{ marginRight: "5px" }} /> Demo
                 </a>
               </div>
             </motion.div>

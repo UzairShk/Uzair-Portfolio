@@ -8,11 +8,15 @@ const Navbar = ({ activeSection, setActiveSection }) => {
   const handleNavClick = (section) => {
     setActiveSection(section);
     setIsMenuOpen(false);
+    const element = document.getElementById(section);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + 100;
+      const scrollPosition = window.scrollY + 150;
       const sectionElements = sections.map((sec) => ({
         id: sec,
         element: document.getElementById(sec),
@@ -34,7 +38,7 @@ const Navbar = ({ activeSection, setActiveSection }) => {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [sections]);
 
   return (
     <nav className="navbar">

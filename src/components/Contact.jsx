@@ -17,6 +17,17 @@ const Contact = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState("");
+  const [errors, setErrors] = useState({});
+
+  const validateForm = () => {
+    const newErrors = {};
+    if (!formData.name.trim()) newErrors.name = "Name is required";
+    if (!formData.email.trim()) newErrors.email = "Email is required";
+    if (!formData.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/))
+      newErrors.email = "Please enter a valid email";
+    if (!formData.message.trim()) newErrors.message = "Message is required";
+    return newErrors;
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,30 +35,50 @@ const Contact = () => {
       ...prev,
       [name]: value,
     }));
+    // Clear error for this field on change
+    if (errors[name]) {
+      setErrors((prev) => ({
+        ...prev,
+        [name]: "",
+      }));
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Validate form
+    const newErrors = validateForm();
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
     setIsSubmitting(true);
+    setSubmitStatus("");
 
     try {
+      // Using Formspree API
       const response = await fetch("https://formspree.io/f/xeoqzlqv", {
         method: "POST",
-        body: JSON.stringify(formData),
         headers: {
           "Content-Type": "application/json",
+          Accept: "application/json",
         },
+        body: JSON.stringify(formData),
       });
 
-      if (response.ok) {
+      if (response.status === 200 || response.ok) {
         setSubmitStatus("success");
         setFormData({ name: "", email: "", message: "" });
+        setErrors({});
         setTimeout(() => setSubmitStatus(""), 5000);
       } else {
         setSubmitStatus("error");
         setTimeout(() => setSubmitStatus(""), 5000);
       }
     } catch (error) {
+      console.error("Form submission error:", error);
       setSubmitStatus("error");
       setTimeout(() => setSubmitStatus(""), 5000);
     } finally {
@@ -143,9 +174,13 @@ const Contact = () => {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                required
                 placeholder="Your name"
               />
+              {errors.name && (
+                <p style={{ color: "#ef4444", fontSize: "0.85rem", marginTop: "0.3rem" }}>
+                  {errors.name}
+                </p>
+              )}
             </div>
 
             <div className="form-group">
@@ -156,9 +191,13 @@ const Contact = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                required
                 placeholder="your@email.com"
               />
+              {errors.email && (
+                <p style={{ color: "#ef4444", fontSize: "0.85rem", marginTop: "0.3rem" }}>
+                  {errors.email}
+                </p>
+              )}
             </div>
 
             <div className="form-group">
@@ -168,9 +207,13 @@ const Contact = () => {
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
-                required
                 placeholder="Your message here..."
               ></textarea>
+              {errors.message && (
+                <p style={{ color: "#ef4444", fontSize: "0.85rem", marginTop: "0.3rem" }}>
+                  {errors.message}
+                </p>
+              )}
             </div>
 
             <button
@@ -182,14 +225,22 @@ const Contact = () => {
             </button>
 
             {submitStatus === "success" && (
-              <p style={{ color: "#10b981", marginTop: "1rem", textAlign: "center" }}>
-                ✓ Message sent successfully!
-              </p>
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                style={{ color: "#10b981", marginTop: "1rem", textAlign: "center" }}
+              >
+                ✓ Message sent successfully! I'll get back to you soon.
+              </motion.p>
             )}
             {submitStatus === "error" && (
-              <p style={{ color: "#ef4444", marginTop: "1rem", textAlign: "center" }}>
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                style={{ color: "#ef4444", marginTop: "1rem", textAlign: "center" }}
+              >
                 ✗ Failed to send message. Please try again.
-              </p>
+              </motion.p>
             )}
           </motion.form>
         </motion.div>

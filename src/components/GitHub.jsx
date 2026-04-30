@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { FiGithub, FiUsers, FiCode } from "react-icons/fi";
+import { FiGithub } from "react-icons/fi";
 
 const GitHub = () => {
   const { ref, inView } = useInView({
@@ -27,24 +27,6 @@ const GitHub = () => {
     },
   };
 
-  const stats = [
-    {
-      icon: <FiCode size={32} />,
-      value: "20+",
-      label: "Repositories",
-    },
-    {
-      icon: <FiUsers size={32} />,
-      value: "100+",
-      label: "Followers",
-    },
-    {
-      icon: <FiGithub size={32} />,
-      value: "500+",
-      label: "Contributions (This Year)",
-    },
-  ];
-
   return (
     <section className="github-section" id="github">
       <div className="container">
@@ -57,21 +39,24 @@ const GitHub = () => {
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
         >
-          <motion.div className="github-stats" variables={containerVariants}>
-            {stats.map((stat, idx) => (
-              <motion.div
-                key={idx}
-                className="stat-card"
-                variants={itemVariants}
-                whileHover={{ scale: 1.05 }}
-              >
-                <div style={{ color: "#38bdf8", marginBottom: "0.5rem" }}>
-                  {stat.icon}
-                </div>
-                <div className="stat-value">{stat.value}</div>
-                <div className="stat-label">{stat.label}</div>
-              </motion.div>
-            ))}
+          <motion.div className="github-stats" variants={containerVariants}>
+            {/* GitHub Readme Stats - Shows automatic stats from GitHub */}
+            <motion.div variants={itemVariants}>
+              <img
+                src="https://github-readme-stats.vercel.app/api?username=UzairShk&show_icons=true&theme=dark&hide_border=true&bg_color=0f172a&text_color=cbd5e1&icon_color=38bdf8"
+                alt="GitHub Stats"
+                style={{ width: "100%", borderRadius: "10px" }}
+              />
+            </motion.div>
+
+            {/* Contribution Streak */}
+            <motion.div variants={itemVariants}>
+              <img
+                src="https://github-readme-streak-stats.herokuapp.com?user=UzairShk&theme=dark&hide_border=true&background=0f172a&ring=38bdf8&fire=38bdf8&currStreakLabel=38bdf8&sideLabels=cbd5e1&dates=cbd5e1"
+                alt="GitHub Streak"
+                style={{ width: "100%", borderRadius: "10px" }}
+              />
+            </motion.div>
           </motion.div>
 
           <motion.div className="github-info" variants={itemVariants}>

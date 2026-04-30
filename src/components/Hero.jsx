@@ -12,7 +12,7 @@ const Hero = () => {
   const [text, setText] = useState("");
   const [roleIndex, setRoleIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
-  const [speed, setSpeed] = useState(80);
+  const [speed, setSpeed] = useState(50);
 
   useEffect(() => {
     const currentRole = roles[roleIndex];
@@ -29,7 +29,7 @@ const Hero = () => {
       } else if (isDeleting && text.length === 0) {
         setIsDeleting(false);
         setRoleIndex((prev) => (prev + 1) % roles.length);
-        setSpeed(500);
+        setSpeed(300);
       }
     };
 
@@ -63,11 +63,13 @@ const Hero = () => {
   };
 
   const handleDownloadResume = () => {
-    // Create a link to download resume
+    // Create a link to download resume - works for GitHub Pages
     const link = document.createElement("a");
-    link.href = "/resume.pdf"; // Make sure this file is in public folder
+    link.href = "/Uzair-Portfolio/UzairCV.pdf"; // Correct path for GitHub Pages with repo name
     link.download = "Mohammed_Uzair_Resume.pdf";
+    document.body.appendChild(link);
     link.click();
+    document.body.removeChild(link);
   };
 
   return (
