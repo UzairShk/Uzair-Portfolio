@@ -15,7 +15,7 @@ const Projects = () => {
       description:
         "A comprehensive Android application for managing employee leave requests. Features role-based login, leave request submission, manager approval system, and real-time tracking. Built with a user-friendly interface and secure backend integration.",
       tech: ["Kotlin", "Firebase Firestore", "Android Studio", "Material Design"],
-      github: "https://github.com/UzairShk",
+      github: "https://github.com/UzairShk/LeaveFlow-Android",
       features: [
         "Role-based authentication (Employee/Manager/Admin)",
         "Leave request creation and tracking",
@@ -29,7 +29,7 @@ const Projects = () => {
       description:
         "A full-stack web application connecting students with internship opportunities. Features role-based dashboards for students, companies, and administrators. Enables job posting, applications, and tracking in a single platform.",
       tech: ["PHP", "MySQL", "HTML5", "CSS3", "JavaScript"],
-      github: "https://github.com/UzairShk",
+      github: "https://github.com/UzairShk/Internship-Portal",
       features: [
         "Role-based dashboards",
         "Job posting & applications",

@@ -12,7 +12,7 @@ const Hero = () => {
   const [text, setText] = useState("");
   const [roleIndex, setRoleIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
-  const [speed, setSpeed] = useState(50);
+  const [speed, setSpeed] = useState(20);
 
   useEffect(() => {
     const currentRole = roles[roleIndex];
@@ -65,7 +65,7 @@ const Hero = () => {
   const handleDownloadResume = () => {
     // Create a link to download resume - works for GitHub Pages
     const link = document.createElement("a");
-    link.href = "/Uzair-Portfolio/UzairCV.pdf"; // Correct path for GitHub Pages with repo name
+    link.href = "/Uzair-Portfolio/public/UzairCV.pdf"; // Correct path for GitHub Pages with repo name
     link.download = "Mohammed_Uzair_Resume.pdf";
     document.body.appendChild(link);
     link.click();
