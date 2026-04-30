@@ -67,7 +67,7 @@ const Hero = () => {
   const handleDownloadResume = () => {
     // Create a link to download resume - works for GitHub Pages
     const link = document.createElement("a");
-    link.href = "/public/UzairCV.pdf"; // Correct path for GitHub Pages with repo name
+    link.href = "/Uzair-Portfolio/public/UzairCV.pdf"; // Correct path for GitHub Pages with repo name
     link.download = "Mohammed_Uzair_Resume.pdf";
     document.body.appendChild(link);
     link.click();
