@@ -8,7 +8,7 @@ import GitHub from "./components/GitHub";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import SecureTouchPrivacy from "./pages/SecureTouchPrivacy";
-import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { HashRouter as Router, Routes, Route, Navigate, useLocation } from "react-router-dom";
 
 function AppContent() {
   const [activeSection, setActiveSection] = useState("home");

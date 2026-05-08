@@ -5,6 +5,30 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>uzair-portfolio</title>
+    <script>
+      (function () {
+        const redirect = sessionStorage.redirect;
+        if (!redirect) return;
+
+        sessionStorage.removeItem("redirect");
+
+        try {
+          const url = new URL(redirect, window.location.origin);
+          const basePath = window.location.pathname.replace(/\/$/, "");
+          const routePath = url.pathname.startsWith(basePath)
+            ? url.pathname.slice(basePath.length) || "/"
+            : url.pathname;
+
+          if (routePath !== "/") {
+            window.location.replace(
+              `${window.location.origin}${basePath}/#${routePath}${url.search}${url.hash}`
+            );
+          }
+        } catch {
+          sessionStorage.removeItem("redirect");
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

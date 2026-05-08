@@ -38,7 +38,7 @@ const Navbar = ({ activeSection, setActiveSection }) => {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [sections]);
+  }, []);
 
   return (
     <nav className="navbar">
