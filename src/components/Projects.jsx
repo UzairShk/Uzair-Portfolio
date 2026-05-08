@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { FiGithub } from "react-icons/fi";
+import { FiExternalLink, FiGithub } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 const Projects = () => {
   const { ref, inView } = useInView({
@@ -21,20 +22,44 @@ const Projects = () => {
         "Leave request creation and tracking",
         "Real-time notifications",
         "Approval workflow",
+        "Dark mode support",
+        "Modern premium UI design",
+        "Responsive layouts for all Android devices",
       ],
     },
     {
       id: 2,
+      title: "SecureTouch Alarm – Anti Theft Security App",
+      description:
+        "A premium Android anti-theft security application that protects smartphones using motion detection, loud alarm alerts, secure PIN verification, foreground services, and notification-based controls. Designed with a modern Material 3 UI, dark mode support, and responsive layouts for all screen sizes.",
+      tech: ["Kotlin", "Jetpack Compose", "Material 3", "Android Studio", "AdMob", "Foreground Services", "Motion Sensors", "DataStore"],
+      github: "https://github.com/UzairShk/SecureTouch-Alarm",
+      demo: "",
+      features: [
+        "Motion detection alarm system",
+        "Secure PIN-based disarm protection",
+        "Foreground background monitoring",
+        "Notification controls for quick access",
+        "Multiple alarm sounds with preview",
+        "Dark mode support",
+        "Modern premium UI design",
+        "Responsive layouts for all Android devices",
+      ],
+    },
+    {
+      id: 3,
       title: "Internship Portal Website",
       description:
         "A full-stack web application connecting students with internship opportunities. Features role-based dashboards for students, companies, and administrators. Enables job posting, applications, and tracking in a single platform.",
       tech: ["PHP", "MySQL", "HTML5", "CSS3", "JavaScript"],
       github: "https://github.com/UzairShk/Internship-Portal",
       features: [
-        "Role-based dashboards",
-        "Job posting & applications",
-        "Admin management panel",
-        "Student profile management",
+        "Role-based secure login for Admin, Company, and Student",
+        "Student registration, resume upload, and profile management",
+        "Company dashboard for internship postings and application review",
+        "Admin control panel for managing users and listings",
+        "Dynamic and responsive UI design",
+        "Application tracking and automated status updates"
       ],
     },
   ];
@@ -102,15 +127,33 @@ const Projects = () => {
               </div>
 
               <div className="project-links">
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="View GitHub Repository"
-                  style={{ flex: 1 }}
-                >
-                  <FiGithub style={{ marginRight: "5px" }} /> GitHub
-                </a>
+                {project.id === 2 ? (
+                  <Link to="/securetouch-privacy-policy" title="Privacy Policy" style={{ flex: 1 }}>
+                    <FiExternalLink style={{ marginRight: "5px" }} /> Privacy Policy
+                  </Link>
+                ) : (
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="View GitHub Repository"
+                    style={{ flex: 1 }}
+                  >
+                    <FiGithub style={{ marginRight: "5px" }} /> GitHub
+                  </a>
+                )}
+
+                {project.demo ? (
+                  <a
+                    href={project.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="View Live Demo"
+                    style={{ flex: 1 }}
+                  >
+                    <FiExternalLink style={{ marginRight: "5px" }} /> Demo
+                  </a>
+                ) : null}
               </div>
             </motion.div>
           ))}
