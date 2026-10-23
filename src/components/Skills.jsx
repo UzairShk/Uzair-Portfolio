@@ -22,6 +22,17 @@ const Skills = () => {
     Databases: ["MySQL", "Firebase Realtime Database", "Firestore"],
     Frontend: ["React", "HTML5", "CSS3", "Responsive Design"],
     Backend: ["Node.js", "PHP", "REST APIs"],
+    "Machine Learning & Research": [
+      "Flower",
+      "FedAvg",
+      "Differential Privacy",
+      "XGBoost",
+      "Scikit-learn",
+      "SHAP",
+      "Streamlit",
+      "Pandas",
+      "NumPy",
+    ],
   };
 
   const containerVariants = {

@@ -5,29 +5,7 @@
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>uzair-portfolio</title>
-    <script>
-      (function () {
-        const isGitHubPages = window.location.hostname.endsWith("github.io");
-        const head = document.head;
-
-        if (isGitHubPages) {
-          const stylesheet = document.createElement("link");
-          stylesheet.rel = "stylesheet";
-          stylesheet.href = "/Uzair-Portfolio/public/site.css";
-          head.appendChild(stylesheet);
-
-          const bundle = document.createElement("script");
-          bundle.type = "module";
-          bundle.src = "/Uzair-Portfolio/public/site.js";
-          head.appendChild(bundle);
-        } else {
-          const script = document.createElement("script");
-          script.type = "module";
-          script.src = "/src/main.jsx";
-          head.appendChild(script);
-        }
-      })();
-    </script>
+    <script type="module" src="/src/main.jsx"></script>
   </head>
   <body>
     <div id="root"></div>

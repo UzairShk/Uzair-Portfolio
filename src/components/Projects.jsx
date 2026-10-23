@@ -62,6 +62,34 @@ const Projects = () => {
         "Application tracking and automated status updates"
       ],
     },
+    {
+      id: 4,
+      title: "Privacy-Preserving Federated Learning NIDS",
+      description:
+        "An experimental cybersecurity and machine-learning research project exploring federated learning for network intrusion detection. It compares centralized and federated models, evaluates IID and Non-IID client data distributions, investigates differential privacy, and uses SHAP explainability and a Streamlit dashboard to examine model performance and privacy-utility trade-offs.",
+      tech: [
+        "Python",
+        "Flower",
+        "FedAvg",
+        "Differential Privacy",
+        "XGBoost",
+        "Scikit-learn",
+        "SHAP",
+        "Streamlit",
+        "Pandas",
+        "NumPy",
+      ],
+      github: "https://github.com/UzairShk/Privacy-Preserving-Federated-NIDS",
+      features: [
+        "Centralized machine-learning baselines",
+        "Federated training with FedAvg",
+        "IID versus Non-IID experimental comparisons",
+        "Differential privacy experiments and privacy-budget accounting",
+        "Classification metrics and comparative evaluation",
+        "SHAP-based feature-importance analysis",
+        "Streamlit dashboard for saved experimental results",
+      ],
+    },
   ];
 
   const containerVariants = {
