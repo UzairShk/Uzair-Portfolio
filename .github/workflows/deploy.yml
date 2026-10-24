@@ -37,6 +37,14 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Verify production artifact
+        run: |
+          test -f dist/index.html
+          grep -q 'src="/Uzair-Portfolio/assets/' dist/index.html
+          grep -q 'href="/Uzair-Portfolio/assets/' dist/index.html
+          test -n "$(find dist/assets -type f -name '*.js' -print -quit)"
+          test -n "$(find dist/assets -type f -name '*.css' -print -quit)"
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
